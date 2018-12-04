@@ -4,7 +4,7 @@
 timetable::timetable(std::string label, int departure, int delay)
 	:mlabel(label), mdeparture(departure), mdelay(delay)
 {
-
+	std::cout << "Timetable destructor called" << std::endl;
 }
 
 bool timetable::timecomp(int aktczas)

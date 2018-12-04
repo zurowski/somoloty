@@ -2,35 +2,40 @@
 #include "plane.h"
 #include "airfield.h"
 #include "timetable.h"
-#include <new>
+
 using namespace std;
+
 int main()
 {
-	//plane samolot1("sam1",300,18000,300,20,20);
+	vector<timetable*> samoloty;
+	vector<plane*> planes;
 
-	//std::cout << samolot1;
-	timetable sam1("sam1", 10, 0);
-	cout << sam1;
-	
+	samoloty.push_back(new timetable("sam0", 10, 0));
+	samoloty.push_back(new timetable("sam1", 15, 0));
+	samoloty.push_back(new timetable("sam2", 20, 0));
+
 
 	for (int aktczas = 0; aktczas < 24; aktczas++)
 	{
-		cout << "aktczas: " << aktczas << endl;
-		if (sam1.timecomp(aktczas))
+		//cout << "aktczas: " << aktczas << endl;
+		for (int i = 0; i < samoloty.size(); i++)
 		{
-			cout << aktczas << ": odlot" << endl;
-			//plane* plane1 = new plane(sam1.getlabel(), 300, 18000, 300, 20, 20);
-			plane* plane1 = new plane("plane1", 300, 18000, 300, 20, 20);
-			//cout << plane1;
-			//delete plane1;
-			cout << "\nkoniec ifa\n";
+			if (samoloty[i]->timecomp(aktczas))
+			{
+				cout << aktczas << ":00 odlot samolotu: " << samoloty[i]->getlabel() << endl;
+				planes.push_back(new plane(samoloty[i]->getlabel(), 300, 18000, 300, 20, 20));
+				delete samoloty[i];
+			}
 		}
-		cout << "\npo ifie\n";
-		delete plane1;
 	}
-	cout << "po forze\n";
-	delete plane1;
 
+
+
+	for (int i = 0; i < planes.size(); i++)
+	{
+		cout << endl << *planes[i] ;
+		delete planes[i];
+	}
 	
 	return 0;
 }

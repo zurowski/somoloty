@@ -13,7 +13,7 @@ public:
 	bool timecomp(int aktczas);
 
 	int getdep() { return mdeparture; }
-	std::string getlabel() { return mlabel; }
+	std::string const getlabel() { return mlabel; }
 };
 
 #endif

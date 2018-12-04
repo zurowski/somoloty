@@ -4,6 +4,7 @@
 plane::plane(std::string label, double speed, double height, double heading, int x, int y)
 	:mlabel(label), mspeed(speed), mheight(height), mheading(heading), mx(x), my(y)
 {
+	std::cout << "Plane constructor called" << std::endl;
 }
 
 
