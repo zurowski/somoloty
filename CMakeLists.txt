@@ -25,7 +25,7 @@ file(GLOB SOURCES "src/*.cpp")
 
 
 
-add_executable(program src/main.cpp src/plane.cpp include/plane.h src/airfield.cpp include/airfield.h src/timetable.cpp include/timetable.h src/PCH.cpp include/PCH.h)
+add_executable(program src/main.cpp src/plane.cpp include/plane.h src/timetable.cpp include/timetable.h src/PCH.cpp include/PCH.h src/helpers.cpp include/helpers.h)
 
 
 

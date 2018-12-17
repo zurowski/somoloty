@@ -1,41 +1,42 @@
 #include "PCH.h"
 #include "plane.h"
-#include "airfield.h"
 #include "timetable.h"
+#include "helpers.h"
 
 using namespace std;
 
 int main()
 {
-	vector<timetable*> samoloty;
-	vector<plane*> planes;
+	// wektory wskaŸników do obiektów
+	vector<timetable*> departures; // do samolotów przed odlotem
+	vector<plane*> arrivals; // do samolotów przylatuj¹cych
+	vector<plane*> planes; // do samolotów po odlocie 
 
-	samoloty.push_back(new timetable("sam0", 10, 0));
-	samoloty.push_back(new timetable("sam1", 15, 0));
-	samoloty.push_back(new timetable("sam2", 20, 0));
+	try {
+		departures.push_back(new timetable("sam0", 5, 2));
+		departures.push_back(new timetable("sam1", 5, 2));
+		departures.push_back(new timetable("sam2", 5, 2));
+		departures.push_back(new timetable("sam3", 5, 2));
+		departures.push_back(new timetable("sam4", 5, 2));
+		departures.push_back(new timetable("sam5", 5, 6));
 
+		
+		settimetable(departures); 
 
-	for (int aktczas = 0; aktczas < 24; aktczas++)
-	{
-		//cout << "aktczas: " << aktczas << endl;
-		for (int i = 0; i < samoloty.size(); i++)
+		for (int aktczas = 0; aktczas < 24; aktczas++) //dzien 
 		{
-			if (samoloty[i]->timecomp(aktczas))
-			{
-				cout << aktczas << ":00 odlot samolotu: " << samoloty[i]->getlabel() << endl;
-				planes.push_back(new plane(samoloty[i]->getlabel(), 300, 18000, 300, 20, 20));
-				delete samoloty[i];
-			}
+			cout << "\n\nAktualny czas: " << aktczas << endl;
+			showtimetable(departures);
+			showtimetable(arrivals);
+
+			godzina(aktczas, departures, arrivals,planes);
+			system("CLS");
 		}
 	}
-
-
-
-	for (int i = 0; i < planes.size(); i++)
+	catch (char const* a)
 	{
-		cout << endl << *planes[i] ;
-		delete planes[i];
+		cerr << a;
+
 	}
-	
 	return 0;
 }

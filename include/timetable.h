@@ -8,12 +8,20 @@ private:
 
 public:
 	timetable(std::string label, int departure, int delay);
-	~timetable() { std::cout << "Timetable destructor called" << std::endl; }
+	~timetable() { //std::cout << "Timetable destructor called" << std::endl; 
+	}
 	friend std::ostream& operator <<(std::ostream& out, const timetable& obj);
+	friend bool operator ==(const timetable& obj1, const timetable& obj2);
+	friend bool operator <(const timetable& obj1, const timetable& obj2);
 	bool timecomp(int aktczas);
-
-	int getdep() { return mdeparture; }
+	
+	
+	int const getdep() { return mdeparture; }
+	int const getdeley() { return mdelay; }
 	std::string const getlabel() { return mlabel; }
+	
+	void incrementdelay() { mdelay++; }
 };
+	
 
 #endif

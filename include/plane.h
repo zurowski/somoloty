@@ -4,14 +4,23 @@
 
 class plane {
 private:
-	double mspeed, mheight, mheading;
-	int mx, my;
+	double mspeed, mheight;
+	int mtime;
 	std::string mlabel;
 public:
-	plane(std::string label, double speed, double height, double heading, int x, int y);
-	~plane() {std::cout << "Plane destructor called" << std::endl;}
+	plane(std::string label, double height, double speed, int time);
+	~plane() {//std::cout << "Plane destructor called" << std::endl;
+	}
 	friend std::ostream& operator <<(std::ostream& out, const plane& obj);
+	void incrementtime();
+	void decrementtime();
+	bool const checktime();
+	bool checkifarrived();
 
+	std::string const getlabel() { return mlabel; }
+	int const gettime() { return mtime; }
+	double const getspeed() { return mspeed; }
+	double const getheight() { return mheight; }
 };
 
 #endif
